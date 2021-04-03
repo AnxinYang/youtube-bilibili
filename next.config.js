@@ -12,6 +12,7 @@ const withPlugins = require('next-compose-plugins');
 // }
 
 module.exports = withPlugins([withTM], {
+    basePath: '/youtube-bilibili',
     redirects: async () => [
         // {
         //     source: '/',
