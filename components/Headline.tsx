@@ -2,6 +2,7 @@ import { useAsync, useStore, If } from 'ax-react-lib';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image'
 import styles from '../styles/Headline.module.css';
+import { MockupData } from '../utils/data';
 export default function Headline() {
     const [isReady] = useStore<boolean>('gapi');
     const [items, setItems] = useState([]);
@@ -23,7 +24,7 @@ export default function Headline() {
                 setItems(result.items);
                 localStorage.setItem('headline', JSON.stringify(result.items))
             } catch (e) {
-                console.log(e)
+                setItems(MockupData)
             }
         }
     }, [isReady])

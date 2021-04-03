@@ -6,9 +6,11 @@ import Player from "./Player";
 import styles from '../styles/Layout.module.css'
 import { useEffect } from "react";
 import { useStore } from "ax-react-lib";
+import Footer from "./Footer";
 
 export default function Layout({ children }) {
     const [, setWindowWidth] = useStore('windowWidth')
+
     useEffect(() => {
         setWindowWidth(window.innerWidth)
         const listener = () => {
@@ -19,6 +21,7 @@ export default function Layout({ children }) {
             window.removeEventListener('resize', listener)
         }
     }, [])
+
     return (
         <div className={styles.container}>
             <PageHead />
@@ -28,7 +31,7 @@ export default function Layout({ children }) {
                 {children}
                 <Player />
             </div>
-
+            <Footer />
         </div>
     )
 }

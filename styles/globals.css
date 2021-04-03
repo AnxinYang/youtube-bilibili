@@ -39,3 +39,7 @@ input:focus {
   white-space: nowrap;
   overflow: hidden;
 }
+
+.hint {
+  color: var(--font-color-hint);
+}
