@@ -1041,7 +1041,7 @@ export default function Section(props: {
 }) {
     const [isReady] = useStore<boolean>('gapi');
     const [items, setItems] = useState([]);
-    const [windowWidth] = useStore('windowWdith', window.innerWidth)
+    const [windowWidth] = useStore('windowWidth', 0)
     useAsync(async () => {
         if (isReady) {
             try {

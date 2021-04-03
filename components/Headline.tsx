@@ -5,7 +5,7 @@ import styles from '../styles/Headline.module.css';
 export default function Headline() {
     const [isReady] = useStore<boolean>('gapi');
     const [items, setItems] = useState([]);
-    const [windowWidth] = useStore('windowWdith', window.innerWidth)
+    const [windowWidth] = useStore('windowWidth', 0)
     useAsync(async () => {
         if (isReady) {
             try {

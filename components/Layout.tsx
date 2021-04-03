@@ -8,8 +8,9 @@ import { useEffect } from "react";
 import { useStore } from "ax-react-lib";
 
 export default function Layout({ children }) {
-    const [, setWindowWidth] = useStore('windowWidth', window.innerWidth)
+    const [, setWindowWidth] = useStore('windowWidth')
     useEffect(() => {
+        setWindowWidth(window.innerWidth)
         const listener = () => {
             setWindowWidth(window.innerWidth)
         }
