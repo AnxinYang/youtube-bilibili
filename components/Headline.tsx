@@ -1,58 +1,79 @@
-import { useAsync, useStore } from 'ax-react-lib';
-import { useEffect, useState } from 'react';
+import { useAsync, useStore, If } from 'ax-react-lib';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image'
 import styles from '../styles/Headline.module.css';
 export default function Headline() {
     const [isReady] = useStore<boolean>('gapi');
     const [items, setItems] = useState([]);
+    const [windowWidth] = useStore('windowWdith', window.innerWidth)
     useAsync(async () => {
         if (isReady) {
             try {
+                const cache = localStorage.getItem('headline');
+                if (cache) {
+                    setItems(JSON.parse(cache));
+                    return
+                }
                 const { result } = await gapi.client.youtube.search.list({
                     part: 'id,snippet',
                     q: '',
                     maxResults: 11
                 })
                 result.items[0].snippet.thumbnails.high.url
-                setItems(result.items)
+                setItems(result.items);
+                localStorage.setItem('headline', JSON.stringify(result.items))
             } catch (e) {
                 console.log(e)
             }
         }
     }, [isReady])
     if (items.length === 0) return <div></div>
-    console.log(items[0]?.snippet?.thumbnails?.high?.ur)
+    let index = 0
     return (
         <div className={styles.container}>
+            <section className={styles.gallery}>
+                <Item data={items[index++]} div={0.96} />
+            </section>
             <section className={styles.recommend}>
-                <Item data={items[0]} gridArea='a0' />
-                <Item data={items[1]} gridArea='a1' />
-                <Item data={items[2]} gridArea='a2' />
-                <Item data={items[3]} gridArea='a3' />
-                <Item data={items[4]} gridArea='a4' />
-
-                <Item data={items[5]} gridArea='b0' />
-                <Item data={items[6]} gridArea='b1' />
-                <Item data={items[7]} gridArea='b2' />
-                <Item data={items[8]} gridArea='b3' />
-                <Item data={items[9]} gridArea='b4' />
+                <div>
+                    <Item data={items[index++]} />
+                    <Item data={items[index++]} />
+                    <If condition={windowWidth > 1500}>
+                        <Item data={items[index++]} />
+                        <Item data={items[index++]} />
+                    </If>
+                    {/* <Item data={items[index++]} /> */}
+                </div>
+                <div>
+                    <Item data={items[index++]} />
+                    <Item data={items[index++]} />
+                    <If condition={windowWidth > 1500}>
+                        <Item data={items[index++]} />
+                        <Item data={items[index++]} />
+                    </If>
+                    {/* <Item data={items[9]} /> */}
+                </div>
             </section>
         </div>
     )
 }
 
 
-function Item(props: { data: any, gridArea?: string }) {
+function Item(props: { data: any, div?: number }) {
     const [, setPlayID] = useStore('playID')
     const { snippet, id } = props.data;
-
+    const div = props.div ?? 2
     return (
-        <div className={styles.items} style={{ gridArea: props.gridArea }}
+        <div className={styles.items} style={{
+            width: snippet?.thumbnails?.high?.width / div,
+            height: snippet?.thumbnails?.high?.height / div,
+        }}
+
             onClick={() => {
                 setPlayID(id.videoId)
             }}
         >
-            <img src={snippet?.thumbnails?.medium?.url ?? '/404.png'} />
+            <img src={snippet?.thumbnails?.high?.url ?? '/404.png'} width={snippet?.thumbnails?.high?.width / div} />
 
             <div className={styles.itemTitle}>
                 {snippet.title}

@@ -8,6 +8,7 @@ export default function PageHead() {
     const [, setPlayer] = useStore('player')
     const [, setPlayeReady] = useStore('playerReady')
     const [, setPlayerStage] = useStore('playerState')
+    const [apiKey] = useStore<string>('apiKey')
     useAsync(async () => {
         if (!gapi) {
             alert('Failed to load GAPI');
@@ -15,7 +16,7 @@ export default function PageHead() {
         }
         gapi.load('client', async () => {
             await gapi.client.init({
-                'apiKey': 'AIzaSyDpYPOvFpdCQ1pA25F5-hlyboWDprYax7I',
+                'apiKey': apiKey,
                 'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest']
             });
             setGAPI(!!gapi.client.youtube)

@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
 
   return <Store
     defaultValues={{
-      apiKey: 'AIzaSyDfT4s2tpTWmSFslxM7aJqwwXH1CsU2aWA'
+      apiKey: 'AIzaSyDSeCBIYYVKzNaaQq-vodJAznnH7wUqR1w'
     }}
   ><Component {...pageProps} /></Store>
 }

@@ -1,22 +1,67 @@
 .container {
-    padding: 0 10vw;
     margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
 }
 .content {
+    width: 100%;
     display: grid;
-    gap: 20px 12px;
-    grid-template-columns: auto auto auto auto auto;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-        "a0 a1 a2 a3 a4"
-        "b0 b1 b2 b3 b4";
+    overflow: hidden;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: "main rank";
+}
+
+.main {
+    grid-area: main;
+}
+.content .main section {
+    display: flex;
+    margin-right: 12px;
 }
 .items {
+    display: inline-block;
     width: 100%;
     height: 100%;
     cursor: pointer;
     position: relative;
     border-radius: 2px;
     overflow: hidden;
-    font-weight: bolder;
+    margin-right: 12px;
+    margin-bottom: 1rem;
+}
+
+.items span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    display: inline-block;
+}
+.items .title:hover,
+.rankItems:hover {
+    color: var(--theme-color-main);
+}
+.items .author {
+    color: var(--font-color-hint);
+}
+
+.rank {
+    grid-area: rank;
+    position: relative;
+    width: 100%;
+}
+.rank section {
+    display: flex;
+    flex-direction: column;
+}
+
+.rankItems {
+    max-width: 100%;
+    margin-bottom: 0.75rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
 }

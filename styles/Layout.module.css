@@ -1,0 +1,9 @@
+.container {
+    width: 100vw;
+    overflow: hidden;
+}
+.content {
+    padding: 0 10vw;
+    position: relative;
+    overflow-x: hidden;
+}

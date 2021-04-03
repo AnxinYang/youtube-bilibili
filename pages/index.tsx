@@ -8,13 +8,13 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
   return (
     <Layout>
-      <>
-        <Headline />
-        <Section title='Video Game' keyword='video game' />
-        <Section title='Anime' keyword='Anime' />
-        <Section title='Music' keyword='Music' />
-        <Section title='News' keyword='News' />
-      </>
+
+      <Headline />
+      <Section title='Video Game' keyword='video game' />
+      <Section title='Anime' keyword='Anime' />
+      <Section title='Music' keyword='Music' />
+      <Section title='News' keyword='News' />
+
     </Layout>
   )
 }
