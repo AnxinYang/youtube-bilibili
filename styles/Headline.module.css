@@ -1,0 +1,47 @@
+.container {
+    padding: 0 10vw;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.recommend {
+    /* width: 100%; */
+    /* height: 200px; */
+    grid-area: recommend;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "a0 a1 a2 a3 a4"
+        "b0 b1 b2 b3 b4";
+}
+
+.items {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.items:hover > .itemTitle {
+    opacity: 1;
+}
+
+.items img {
+    width: 100%;
+}
+
+.itemTitle {
+    position: absolute;
+    bottom: 0;
+    /* height: 1rem; */
+    padding: 8px 1rem;
+    width: 100%;
+    background-color: black;
+    color: white;
+    opacity: 0;
+    transition: 0.2s;
+}
