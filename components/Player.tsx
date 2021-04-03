@@ -5,9 +5,14 @@ export default function Player() {
     const [playID, setID] = useStore('playID', '');
     const [player] = useStore<any>('player');
     useEffect(() => {
-        playID && player.loadVideoById(playID)
-        !playID && player.stopVideo()
-    }, [playID])
+        if (!player) return
+        try {
+            playID && player.loadVideoById(playID)
+            !playID && player.stopVideo()
+        } catch (e) {
+
+        }
+    }, [playID, player])
     return (
         <div
             style={{

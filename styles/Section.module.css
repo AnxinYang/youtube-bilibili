@@ -1,0 +1,22 @@
+.container {
+    padding: 0 10vw;
+    margin-bottom: 2rem;
+}
+.content {
+    display: grid;
+    gap: 20px 12px;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "a0 a1 a2 a3 a4"
+        "b0 b1 b2 b3 b4";
+}
+.items {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    font-weight: bolder;
+}
