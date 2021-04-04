@@ -8,7 +8,6 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
   return (
     <Layout>
-
       <Headline />
       <Section title='Video Game' keyword='video game' />
       <Section title='Anime' keyword='Anime' />
