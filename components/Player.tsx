@@ -1,13 +1,30 @@
 import { useStore } from "ax-react-lib";
 import { useEffect, useState } from "react"
+declare var YT: any;
 
 export default function Player() {
     const [playID, setID] = useStore('playID', '');
-    const [player] = useStore<any>('player');
+    const [player, setPlayer] = useState<any>(undefined);
     useEffect(() => {
-        if (!player) return
         try {
-            playID && player.loadVideoById(playID)
+            if (player) {
+                playID && player.loadVideoById(playID)
+            } else {
+                const newPlayer = new YT.Player('player', {
+                    height: '390',
+                    width: '640',
+                    events: {
+                        'onReady': (e) => {
+
+                        },
+                        'onStateChange': (e) => {
+
+                        }
+                    }
+                });
+                playID && newPlayer.loadVideoById(playID);
+                setPlayer(newPlayer)
+            }
             !playID && player.stopVideo()
         } catch (e) {
 

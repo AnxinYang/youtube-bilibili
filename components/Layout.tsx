@@ -7,7 +7,7 @@ import styles from '../styles/Layout.module.css'
 import { useEffect } from "react";
 import { useAsync, useStore } from "ax-react-lib";
 import Footer from "./Footer";
-declare var YT: any;
+
 
 export default function Layout({ children }) {
     const [, setWindowWidth] = useStore('windowWidth')
@@ -42,25 +42,6 @@ export default function Layout({ children }) {
         });
     }, []);
 
-    useAsync(async () => {
-        if (!YT) {
-            alert('Failed to load YT');
-            return
-        }
-        const player = new YT.Player('player', {
-            height: '390',
-            width: '640',
-            events: {
-                'onReady': (e) => {
-
-                },
-                'onStateChange': (e) => {
-
-                }
-            }
-        });
-        setPlayer(player)
-    }, [])
 
 
     return (
