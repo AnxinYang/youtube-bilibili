@@ -15,14 +15,13 @@ export default function Player() {
                     width: '640',
                     events: {
                         'onReady': (e) => {
-
+                            playID && newPlayer.loadVideoById(playID);
                         },
                         'onStateChange': (e) => {
 
                         }
                     }
                 });
-                playID && newPlayer.loadVideoById(playID);
                 setPlayer(newPlayer)
             }
             !playID && player.stopVideo()
