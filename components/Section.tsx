@@ -1,4 +1,4 @@
-import { useStore, useAsync, If } from 'ax-react-lib';
+import { useStore, useAsync, If, LazyLoad } from 'ax-react-lib';
 import { useEffect, useState } from 'react';
 import styles from '../styles/Section.module.css';
 import { MockupData } from '../utils/data';
@@ -37,7 +37,7 @@ export default function Section(props: {
     // if (items.length === 0) return <div></div>
     let index = 0;
     return (
-        <section className={styles.container}>
+        <LazyLoad tag='section' className={styles.container} style={{ minHeight: '300px' }} threshold={0.8}>
             <div className={styles.content}>
                 <div className={styles.main}>
                     <h2>
@@ -88,7 +88,7 @@ export default function Section(props: {
                     </section>
                 </div>
             </div>
-        </section>
+        </LazyLoad>
     )
 }
 
